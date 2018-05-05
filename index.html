@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+	
+		<title>Music Visualization</title>
+		<link rel='stylesheet' href='stylesheets/style.css' type="text/css" />
+	
+	</head>
+	
+	
+	<body>
+	
+	<div id ="overlay">
+		<div class = "center">
+		<h1> Music Visualization </h1>
+		
+		
+			<h3> Select an audio sample </h3>
+			
+			<select id="samples">
+			  <option value="blank" disabled selected value> Select a sample </option>
+			  <option value="one">Sample One</option>
+			  <option value="two">Sample Two</option>
+			  <option value="three">Sample Three</option>
+			</select>
+			
+				<h3> Or </h3>
+		
+			
+			<h3>
+			<label for="audioFile" class="file"> Upload your own <br>
+			  <input type="file" id="audioFile" accept="audio/*" />
+			</label>
+			</h3>
+			
+		
+		
+		<p id="uploadedFile"></p>
+		
+		<button type="button" id="start"> Start </button>
+		
+		</div>
+	
+	</div>
+	
+	<div id = "visuals" style = "display: none">
+		
+		<button type="button" id="change"> Change Song </button>
+		
+		<div id = "sceneDisplay">
+			<span />
+		</div>
+	
+		<audio id="audio" controls></audio>
+	</div>
+	
+	
+	
+	
+	
+	</body>
+	
+	
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="three.min.js"></script>
+	<script type="text/javascript" src="OrbitControls.js"></script>
+
+
+</html>

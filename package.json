@@ -1,0 +1,23 @@
+{
+  "name": "music-visualization",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "three": "^0.92.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zcl217/music-visualization.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zcl217/music-visualization/issues"
+  },
+  "homepage": "https://github.com/zcl217/music-visualization#readme"
+}

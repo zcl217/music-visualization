@@ -12,7 +12,7 @@
 	
 	<body>
 	
-	<div id ="overlay">
+	<div id ="overlay" style = "display: block">
 		<div class = "center">
 		<h1> Music Visualization </h1>
 		
@@ -21,16 +21,16 @@
 			
 			<select id="samples">
 			  <option value="blank" disabled selected value> Select a sample </option>
-			  <option value="one">Sample One</option>
-			  <option value="two">Sample Two</option>
-			  <option value="three">Sample Three</option>
+			  <option value="one">Viridianscape</option>
+			  <option value="two">The Black Heaven</option>
+			  <option value="three">Akumu</option>
 			</select>
 			
 				<h3> Or </h3>
 		
 			
 			<h3>
-			<label for="audioFile" class="file"> Upload your own <br>
+			<label for="audioFile" class="file"> Upload your own
 			  <input type="file" id="audioFile" accept="audio/*" />
 			</label>
 			</h3>
@@ -41,19 +41,78 @@
 		
 		<button type="button" id="start"> Start </button>
 		
+		<h5> Note: You can drag the screen around and scroll in/out the visualizer </h5>
+		
 		</div>
 	
 	</div>
 	
 	<div id = "visuals" style = "display: none">
 		
-		<button type="button" id="change"> Change Song </button>
+		<div id = "options">
+		
+			<button type="button" id = "optionsToggle"> Hide Options </button>
+			<div id = "optionButtons" style = "display: block">
+				<button type="button" id="change"> Change Song </button>
+				<button type="button" id="rotation"> Toggle Auto Rotate </button>
+				<button type="button" id="color"> Change Colors </button>
+				<button type="button" id="toggleAudio"> Hide Audio Player </button>
+			</div>
+		</div>
 		
 		<div id = "sceneDisplay">
 			<span />
 		</div>
+		
+		<div id = "colorSelection" style = "display: none">
+			
+			<button type="button" id="closeColors"> X </button>
+			
+			<h3 class = "center"> Color Selection </h3>
+			
+			<!-- color picker tutorial: https://dzone.com/articles/creating-your-own-html5 -->
+			
+			<p> Top: </p>
+			
+			<!-- preview element -->
+			<div id="previewTop"></div>
+			
+			<!-- colorpicker element -->
+			<div id="colorpickerTop" style="display:none">
+				<canvas id="pickerTop" var="1" width="300" height="300"></canvas>
+
+				<div class="controls">
+					<div><label>R</label> <input type="text" id="rVal1" /></div>
+					<div><label>G</label> <input type="text" id="gVal1" /></div>
+					<div><label>B</label> <input type="text" id="bVal1" /></div>
+					<div><label>RGB</label> <input type="text" id="rgbVal1" /></div>
+					<div><label>HEX</label> <input type="text" id="hexVal1" /></div>
+				</div>
+			</div>
+			
+			<p> Bottom: </p>
+			<!-- preview element -->
+			<div id="previewBot"></div>
+
+			<!-- colorpicker element -->
+			<div id="colorpickerBot" style="display:none">
+				<canvas id="pickerBot" var="2" width="300" height="300"></canvas>
+
+				<div class="controls">
+					<div><label>R</label> <input type="text" id="rVal2" /></div>
+					<div><label>G</label> <input type="text" id="gVal2" /></div>
+					<div><label>B</label> <input type="text" id="bVal2" /></div>
+					<div><label>RGB</label> <input type="text" id="rgbVal2" /></div>
+					<div><label>HEX</label> <input type="text" id="hexVal2" /></div>
+				</div>
+			</div>
+			
+			<div class = "center">
+				<button type="button" id="colorSelect" class = "center"> OK </button>
+			</div>
+		</div>
 	
-		<audio id="audio" controls></audio>
+		<audio id="audio" controls style = "display: block"> Your browser does not support mp3.</audio>
 	</div>
 	
 	

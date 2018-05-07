@@ -11,15 +11,37 @@ body{
 #overlay{
 	margin: auto;
 	width: 30vw;
-	display: block;
 	margin-top: 10vh;
 }
 
-h1, h3, p{
+#audioFile{
+	margin-left: 90px;
+	margin-top: 5%;
+}
+
+h1, h3, h5, p{
 	color: white;
 	font-family: Junction, Helvetica;
-	margin-bottom: 10vh;
-	
+	margin-bottom: 7vh;
+	margin-top: 7vh;
+}
+
+button{
+	background: linear-gradient(#fb7304, #ff0d00);
+	border-radius: 5px;
+	border: 1px solid #ffffff;
+}
+
+button:focus{
+	outline: 0;
+}
+
+button:hover{
+	background: #ff8686;
+}
+
+button:active{
+	background: #ff0d00;
 }
 
 #start{
@@ -27,6 +49,10 @@ h1, h3, p{
 	height: 50px;
 	font-family: Junction, Helvetica;
 	
+}
+
+#visuals{
+	justify-content: center;
 }
 
 select{
@@ -38,14 +64,152 @@ canvas{
 	display: block;
 }
 
-#change{
+#options{
 	position: absolute;
-	margin-right: 20px;
+	right: 5%;
+	top: 5%;
+}
+
+#optionButtons{
+	margin-top: 30px;
+	width: 100px;
+	text-align: right;
+}
+
+#optionsToggle{
+	color: white;
+	width: 100px;
+}
+
+#change, #color{
+	margin-top: 50px;
 	width: 75px;
 	height: 50px;
 	font-family: Junction, Helvetica;
 }
 
+#rotation{
+	margin-top: 50px;
+	width: 75px;
+	height: 70px;
+	font-family: Junction, Helvetica;
+}
+
+#toggleAudio{
+	margin-top: 50px;
+	width: 75px;
+	height: 70px;
+	font-family: Junction, Helvetica;
+}
+
+#audio{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
 .center{
 	text-align: center;
 }
+
+#colorSelection{
+	position: absolute;
+	top: 20px;
+	height: 200px;
+	width: 300px;
+	border: 5px solid orange;
+	border-radius: 5px;
+}
+
+#colorSelection h3{
+	margin: 0;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#colorSelection p{
+	margin: 0;
+	margin-top: 20px;
+	margin-left: 40px;
+	display: inline-block;
+	text-align: center;
+}
+
+#colorPicker p{
+	margin-left: 10%;
+}
+
+#colorSelect{
+	width: 50px;
+	height: 50px;
+	font-family: Junction, Helvetica;
+	display: inline-block;
+	margin-top: 25px;
+}
+
+#closeColors{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+
+
+#colorpickerTop, #colorpickerBot {
+    background-color: #222222;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 2px 2px 2px #444444;
+    color: #FFFFFF;
+    font-size: 12px;
+    position: absolute;
+    width: 460px;
+}
+#pickerTop, #pickerBot {
+    cursor: crosshair;
+    float: left;
+    margin: 10px;
+    border: 0;
+}
+.controls {
+    float: right;
+    margin: 10px;
+}
+.controls > div {
+    border: 1px solid #2F2F2F;
+    margin-bottom: 5px;
+    overflow: hidden;
+    padding: 5px;
+}
+.controls label {
+    float: left;
+	font-family: Junction, Helvetica;
+}
+.controls > div input {
+    background-color: #121212;
+    border: 1px solid #2F2F2F;
+    color: #DDDDDD;
+    float: right;
+    font-size: 10px;
+    height: 14px;
+    margin-left: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 75px;
+}
+#previewBot, #previewTop {
+    background: url("../images/select.png") repeat scroll center center transparent;
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px #444444;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+	display: inline-block;
+}
+
+
+
+
+
+
+
+

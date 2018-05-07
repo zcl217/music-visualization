@@ -84,6 +84,7 @@ $(document).ready(function() {
 	});
 	$('#pickerTop').click((e) =>{ // click event handler to lock in color
 		preview1 = !preview1;
+		$("#colorpickerTop").css({'display': 'none'});
 	});
 	$('#previewTop').click((e) =>{ // preview click to make canvas appear
 		$("#colorpickerBot").css({'display': 'none'});
@@ -140,6 +141,7 @@ $(document).ready(function() {
 	});
 	$('#pickerBot').click((e) =>{ // click event handler to lock in color
 		preview2 = !preview2;
+		$("#colorpickerBot").css({'display': 'none'});
 	});
 	$('#previewBot').click((e) =>{ // preview click to make canvas appear
 		$("#colorpickerTop").css({'display': 'none'});

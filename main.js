@@ -389,7 +389,7 @@ function play(audio, analyser, ctx){
 	for (let a = 0; a < 1024; a++){
 	  
 		if (a%2 == 0){
-			texture = 'images/two.PNG';
+			texture = 'images/two.png';
 		}else{
 			texture = 'images/one.PNG';
 		}

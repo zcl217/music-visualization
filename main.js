@@ -173,6 +173,24 @@ function stop(){
 }
 
 function toggleOptions(){
+	let height = $("#optionButtons").css("height");
+	if (height === "500px"){
+		$("#optionButtons").css({'height': '0px'});
+		$("#change").css({'height': '0px'});
+		$("#color").css({'height': '0px'});
+		$("#rotation").css({'height': '0px'});
+		$("#toggleAudio").css({'height': '0px'});
+		$("#optionsToggle").text("Show Options");
+	}else if (height === "0px"){
+		$("#optionButtons").css({'height': '500px'});
+		$("#change").css({'height': '50px'});
+		$("#color").css({'height': '50px'});
+		$("#rotation").css({'height': '70px'});
+		$("#toggleAudio").css({'height': '70px'});
+		$("#optionsToggle").text("Hide Options");
+	}
+	
+	/*
 	let curDisplay = $("#optionButtons").css("display");
 	if (curDisplay === "block"){
 		$("#optionButtons").css({'display': 'none'});
@@ -181,6 +199,7 @@ function toggleOptions(){
 		$("#optionButtons").css({'display': 'block'});
 		$("#optionsToggle").text("Hide Options");
 	}
+	*/
 }
 
 function toggleRotation(){

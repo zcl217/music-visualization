@@ -73,7 +73,20 @@ canvas{
 #optionButtons{
 	margin-top: 30px;
 	width: 100px;
+	height: 500px;
+	overflow: hidden;
 	text-align: right;
+	-webkit-transition:height 200ms ease-in;
+    -moz-transition:height 200ms ease-in;
+    -o-transition:height 200ms ease-in;
+    transition:height 200ms ease-in;
+}
+
+#optionButtons button{
+	-webkit-transition:height 200ms ease-in;
+    -moz-transition:height 200ms ease-in;
+    -o-transition:height 200ms ease-in;
+    transition:height 200ms ease-in;
 }
 
 #optionsToggle{

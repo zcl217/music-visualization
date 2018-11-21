@@ -1,4 +1,4 @@
-
+/*jshint esversion: 6 */ 
 var animationId;
 let renderer, camera, controls, light;
 let rotation = false;
@@ -6,7 +6,6 @@ let topColor = "";
 let bottomColor = "";
 
 $(document).ready(function() {
-	console.log("connected");
 	//audio add active?
 	//var audio = $("#audio");
 	
@@ -51,7 +50,7 @@ $(document).ready(function() {
 	let image1 = new Image();
 	image1.onload = function () {
 		ctx1.drawImage(image1, 0, 0, image1.width, image1.height); // draw the image on the canvas
-	}
+	};
 
 	let imageSrc = "images/colorwheel.png";
 	image1.src = imageSrc;
@@ -108,7 +107,7 @@ $(document).ready(function() {
 	let image2 = new Image();
 	image2.onload = function () {
 		ctx2.drawImage(image2, 0, 0, image2.width, image2.height); // draw the image on the canvas
-	}
+	};
 
 	let imageSrc2 = "images/colorwheel.png";
 	image2.src = imageSrc2;
@@ -362,12 +361,12 @@ function play(audio, analyser, ctx){
     for (let i = 0; i <= 800; i++){
 		let x, y, z;
         y = ((i * offset) - 1) + (offset / 2);
-        r = Math.sqrt(1 - Math.pow(y,2))
+        r = Math.sqrt(1 - Math.pow(y,2));
 
-        let phi = ((i + rnd) % 800) * increment
+        let phi = ((i + rnd) % 800) * increment;
 
-        x = Math.cos(phi) * r
-        z = Math.sin(phi) * r
+        x = Math.cos(phi) * r;
+        z = Math.sin(phi) * r;
 		
 		x *= 50;
 		y *= 50;
@@ -382,15 +381,15 @@ function play(audio, analyser, ctx){
     for (let a = 0; a < 800; a++){
 	  
 		let {x, y, z} = evenPoints[a];
-		var parent = new THREE.Object3D();
+		let parent = new THREE.Object3D();
 		scene.add( parent );
 
-		var stick = new THREE.Object3D();
-		var point = new THREE.Vector3( x, y, z );
+		let stick = new THREE.Object3D();
+		let point = new THREE.Vector3( x, y, z );
 		stick.lookAt( point );
 		parent.add( stick );
 
-		var geometry = new THREE.CubeGeometry( 3, 3, 3, 1, 1, 1 );
+		let geometry = new THREE.CubeGeometry( 3, 3, 3, 1, 1, 1 );
 		//var geometry = new THREE.SphereGeometry(2, 10, 10);
 		let material = new THREE.MeshPhongMaterial({
 		//color: 'skyblue'
@@ -399,7 +398,7 @@ function play(audio, analyser, ctx){
 		
 		});
 		
-		var mesh = new THREE.Mesh( geometry, material );
+		let mesh = new THREE.Mesh( geometry, material );
 		let r = Math.sqrt(Math.pow(x,2) + Math.pow(y,2) + Math.pow(z,2));
 		mesh.position.set( 0, 0, r );
 		stick.add( mesh );
@@ -418,22 +417,22 @@ function play(audio, analyser, ctx){
 		x *= 10;
 		y *= 10;
 		z *= 10;
-		var parent = new THREE.Object3D();
+		let parent = new THREE.Object3D();
 		scene.add( parent );
 
-		var stick = new THREE.Object3D();
-		var point = new THREE.Vector3( x, y, z );
+		let stick = new THREE.Object3D();
+		let point = new THREE.Vector3( x, y, z );
 		stick.lookAt( point );
 		parent.add( stick );
 
 		//var geometry = new THREE.CubeGeometry( 2, 2, 2, 2, 2, 2 );
-		var geometry = new THREE.SphereGeometry(2, 10, 10);
+		let geometry = new THREE.SphereGeometry(2, 10, 10);
 		let material = new THREE.MeshPhongMaterial({
 		//color: 'skyblue'
 		map: new THREE.TextureLoader().load(texture)
 		});
 		
-		var mesh = new THREE.Mesh( geometry, material );
+		let mesh = new THREE.Mesh( geometry, material );
 		
 		let r = Math.sqrt(Math.pow(x,2) + Math.pow(y,2) + Math.pow(z,2));
 		mesh.position.set( 0, 0, r );

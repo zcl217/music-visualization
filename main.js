@@ -6,7 +6,7 @@ let topColor = "";
 let bottomColor = "";
 
 $(document).ready(function() {
-	
+	console.log("connected");
 	//audio add active?
 	//var audio = $("#audio");
 	

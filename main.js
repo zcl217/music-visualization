@@ -167,7 +167,7 @@ function stop(){
 	$("#audio").attr("src", "");
 	
 	$("#visuals").css({'display': 'none'});
-	$("#overlay").css({'display': 'block'});
+	$("#overlay").css({'display': 'flex'});
 	
 }
 

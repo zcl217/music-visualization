@@ -11,36 +11,37 @@
 	
 	<body>
 	
-	<div id ="overlay" style = "display: block">
-		<div class = "center">
-		<h1> Music Visualization </h1>
-		
-		
-			<h3> Select an audio sample </h3>
+	<div id ="overlay">
+		<div class = "col1">
+			<h1> Music Visualization </h1>
+		</div>	
 			
-			<select id="samples">
-			  <option value="blank" disabled selected value> Select a sample </option>
-			  <option value="one">Viridianscape</option>
-			  <option value="two">The Black Heaven</option>
-			  <option value="three">Akumu</option>
-			</select>
+		<div class = "col2">
+				<h3> Select an audio sample </h3>
+				
+				<select id="samples">
+				  <option value="blank" disabled selected value> Select a sample </option>
+				  <option value="one">Viridianscape</option>
+				  <option value="two">The Black Heaven</option>
+				  <option value="three">Akumu</option>
+				</select>
+				
+					<h3> Or </h3>
 			
-				<h3> Or </h3>
-		
+				
+				<h3 id="inputButton">
+				<label for="audioFile" class="file"> Upload your own
+				  <input type="file" id="audioFile" accept="audio/*" />
+				</label>
+				</h3>
+				
 			
-			<h3>
-			<label for="audioFile" class="file"> Upload your own
-			  <input type="file" id="audioFile" accept="audio/*" />
-			</label>
-			</h3>
 			
-		
-		
-		<p id="uploadedFile"></p>
-		
-		<button type="button" id="start"> Start </button>
-		
-		<h5> Note: You can drag the screen around and scroll in/out the visualizer </h5>
+			<p id="uploadedFile"></p>
+			
+			<button type="button" id="start"> Start </button>
+			
+			<h5> Note: You can drag the screen around and scroll in/out the visualizer </h5>
 		
 		</div>
 	

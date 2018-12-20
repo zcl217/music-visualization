@@ -8,14 +8,35 @@ body{
 	margin: 0px;
 }
 
+.col1{
+	flex: 50%;
+	margin: 3vh;
+	border-right: 2px solid #ff0000;
+	padding: 1em;
+	border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ff0000 48%, rgba(255, 255, 255, 0) 100%);
+	border-image-slice: 1;
+}
+
+.col2{
+	flex: 50%;
+	margin: 3vh;
+}
+
+.col1 h1{
+	font-size: 12vh;
+}
+
 #overlay{
 	margin: auto;
-	width: 30vw;
+	display: flex;
 	margin-top: 10vh;
 }
 
+#inputButton{
+	width: 50%;
+}
+
 #audioFile{
-	margin-left: 90px;
 	margin-top: 5%;
 }
 

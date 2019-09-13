@@ -1,44 +1,5 @@
-/*jshint esversion: 6 */ 
-var animationId;
-let renderer, camera, controls, light;
-let rotation = false;
-let topColor = "";
-let bottomColor = "";
-
-$(document).ready(function() {
-	//audio add active?
-	//var audio = $("#audio");
-	
-	
-	//file.onchange = displayName(file);
-	
-	let audio = $("#audio")[0];
-	
-	var ctx = new AudioContext();
-	//var audio = document.getElementById('myAudio');
-	var audioSrc = ctx.createMediaElementSource(audio);
-	var analyser = ctx.createAnalyser();
-	// we have to connect the MediaElementSource with the analyser 
-	audioSrc.connect(analyser);
-	audioSrc.connect(ctx.destination);
-	// we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
-
-	
-	ctx.resume();
-	//if we don't use an arrow function it calls play right away
-	$("#start").click( () => play(audio, analyser, ctx));
-	$("#optionsToggle").click(toggleOptions);
-	$("#change").click(stop);
-	$("#rotation").click(toggleRotation);
-	$("#color").click(toggleColors);
-	$("#colorSelect").click(changeColors);
-	$("#closeColors").click(closeColors);
-	$("#toggleAudio").click(toggleAudio);
-	
-	window.addEventListener('resize', onWindowResize, false);
-	
+function createColorWheelEvents(){
 	//source: https://dzone.com/articles/creating-your-own-html5
-	
 	//need to do this twice; one for the top color picker and one for the bot
 	let preview1 = true; // can preview
 
@@ -50,7 +11,7 @@ $(document).ready(function() {
 	let image1 = new Image();
 	image1.onload = function () {
 		ctx1.drawImage(image1, 0, 0, image1.width, image1.height); // draw the image on the canvas
-	};
+	}
 
 	let imageSrc = "images/colorwheel.png";
 	image1.src = imageSrc;
@@ -76,7 +37,7 @@ $(document).ready(function() {
 			$('#bVal1').val(pixel[2]);
 			$('#rgbVal1').val(pixel[0]+','+pixel[1]+','+pixel[2]);
 
-			var dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0];
+			let dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0];
 			$('#hexVal1').val('#' + ('0000' + dColor.toString(16)).substr(-6));
 			topColor = ('0000' + dColor.toString(16)).substr(-6);
 		}
@@ -107,7 +68,7 @@ $(document).ready(function() {
 	let image2 = new Image();
 	image2.onload = function () {
 		ctx2.drawImage(image2, 0, 0, image2.width, image2.height); // draw the image on the canvas
-	};
+	}
 
 	let imageSrc2 = "images/colorwheel.png";
 	image2.src = imageSrc2;
@@ -133,7 +94,7 @@ $(document).ready(function() {
 			$('#bVal2').val(pixel[2]);
 			$('#rgbVal2').val(pixel[0]+','+pixel[1]+','+pixel[2]);
 
-			var dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0];
+			let dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0];
 			$('#hexVal2').val('#' + ('0000' + dColor.toString(16)).substr(-6));
 			bottomColor = ('0000' + dColor.toString(16)).substr(-6);
 		}
@@ -153,9 +114,7 @@ $(document).ready(function() {
 			preview2 = true;			
 		}
 	});
-		
-		
-});
+}
 
 function displayName(file){
 	if (file) $("#uploadedFile").text(file.name);
@@ -172,24 +131,6 @@ function stop(){
 }
 
 function toggleOptions(){
-	let height = $("#optionButtons").css("height");
-	if (height === "500px"){
-		$("#optionButtons").css({'height': '0px'});
-		$("#change").css({'height': '0px'});
-		$("#color").css({'height': '0px'});
-		$("#rotation").css({'height': '0px'});
-		$("#toggleAudio").css({'height': '0px'});
-		$("#optionsToggle").text("Show Options");
-	}else if (height === "0px"){
-		$("#optionButtons").css({'height': '500px'});
-		$("#change").css({'height': '50px'});
-		$("#color").css({'height': '50px'});
-		$("#rotation").css({'height': '70px'});
-		$("#toggleAudio").css({'height': '70px'});
-		$("#optionsToggle").text("Hide Options");
-	}
-	
-	/*
 	let curDisplay = $("#optionButtons").css("display");
 	if (curDisplay === "block"){
 		$("#optionButtons").css({'display': 'none'});
@@ -198,7 +139,6 @@ function toggleOptions(){
 		$("#optionButtons").css({'display': 'block'});
 		$("#optionsToggle").text("Hide Options");
 	}
-	*/
 }
 
 function toggleRotation(){
@@ -251,37 +191,12 @@ function onWindowResize(){
 	if (renderer) renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
-function play(audio, analyser, ctx){
-	$("#overlay").css({'display': 'none'});
-	$("#visuals").css({'display': 'flex'});
-	let selectedOption = $("#samples").val();
-	let file = $("#audioFile")[0];
-	let files = file.files;
-	
-	if (file && files.length > 0){
-		
-		//fileLabel.classList.add('normal');
-	   // audio.classList.add('active');
-		$("#audio").attr("src", URL.createObjectURL(files[0]));
-		
-	}else if (selectedOption){
-		
-		$("#audio").attr("src", "audio/" +selectedOption+".mp3");
-	}else{
-		//display error
-		console.log("error, returning");
-		stop();
-		return;
-	}
-	
-	
-	ctx.resume();
-	audio.load();
-	audio.play();
+
+function initializeVariables(){
 	// frequencyBinCount tells you how many values you'll receive from the analyser
-	var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+	frequencyData = new Uint8Array(analyser.frequencyBinCount);
 	
-	let scene = new THREE.Scene();
+	scene = new THREE.Scene();
 	
 	camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1500);
 	camera.position.z = 150;
@@ -296,39 +211,14 @@ function play(audio, analyser, ctx){
 	//we do this to remove the previous canvas (if we changed songs)
 	$("#sceneDisplay")[0].children[0].replaceWith(renderer.domElement);
 	
-	//0xff0d00, 0x99ccff
-	//0x000000, 0xffffff
 	light = new THREE.HemisphereLight(0xff0d00, 0x99ccff, 1);
 	scene.add(light);
 	
-	/*
-	let cubeList = [];
-	let x = 0, y = 0, z = 0;
-	let cube;
-	for (let a = 0; a < 1000; a++){
-		let geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-		let material = new THREE.MeshNormalMaterial( );
-		cube = new THREE.Mesh(geometry, material);
+	angle = -100;
+	radius = 170;
+}
 
-		cube.position.x = x;
-		
-		scene.add(cube);
-		cubeList.push(cube);
-		
-		x+= 5;
-		if (x == 50){
-			y+= 5;
-			x = 0;
-		}else if (y == 50){
-			z+= 5;
-			y = 0;
-			x = 0;
-		}
-		
-		cube.position.y = y;
-		cube.position.z = z;
-	}
-	*/
+function generateSpheres(scene){
 	
 	let points = [];
     for (let a = 0; a <= 1024; a++){
@@ -361,12 +251,12 @@ function play(audio, analyser, ctx){
     for (let i = 0; i <= 800; i++){
 		let x, y, z;
         y = ((i * offset) - 1) + (offset / 2);
-        r = Math.sqrt(1 - Math.pow(y,2));
+        r = Math.sqrt(1 - Math.pow(y,2))
 
-        let phi = ((i + rnd) % 800) * increment;
+        let phi = ((i + rnd) % 800) * increment
 
-        x = Math.cos(phi) * r;
-        z = Math.sin(phi) * r;
+        x = Math.cos(phi) * r
+        z = Math.sin(phi) * r
 		
 		x *= 50;
 		y *= 50;
@@ -390,12 +280,8 @@ function play(audio, analyser, ctx){
 		parent.add( stick );
 
 		let geometry = new THREE.CubeGeometry( 3, 3, 3, 1, 1, 1 );
-		//var geometry = new THREE.SphereGeometry(2, 10, 10);
 		let material = new THREE.MeshPhongMaterial({
-		//color: 'skyblue'
-		shininess: 50,
-		//map: new THREE.TextureLoader().load('images/wood.png')
-		
+			shininess: 50,
 		});
 		
 		let mesh = new THREE.Mesh( geometry, material );
@@ -425,7 +311,7 @@ function play(audio, analyser, ctx){
 		stick.lookAt( point );
 		parent.add( stick );
 
-		//var geometry = new THREE.CubeGeometry( 2, 2, 2, 2, 2, 2 );
+		//let geometry = new THREE.CubeGeometry( 2, 2, 2, 2, 2, 2 );
 		let geometry = new THREE.SphereGeometry(2, 10, 10);
 		let material = new THREE.MeshPhongMaterial({
 		//color: 'skyblue'
@@ -438,80 +324,48 @@ function play(audio, analyser, ctx){
 		mesh.position.set( 0, 0, r );
 		stick.add( mesh );
 	}
-  
-  
-  
+}
 
-/*  
-	console.log(scene.children.length);
-	console.log(scene.children);
-	console.log(scene.children[0]);
-	console.log(scene.children[5].children[0]);
+function render(){
+	animationId = requestAnimationFrame( render );
+	analyser.getByteFrequencyData(frequencyData);
+	controls.update();
+  
+	let frequencyPointer = 0;
 	
-	console.log(typeof(scene.children[5]));
-	*/
-	
-	let angle = -100;
-	let radius = 170;
-	
-	var render = function () {
-		animationId = requestAnimationFrame( render );
-		analyser.getByteFrequencyData(frequencyData);
-		controls.update();
-	  
-		let frequencyPointer = 0;
-		for (let a = 2; a < scene.children.length; a++){
-			
-			let obj = scene.children[a];
-			
-			if (a < 802){
-				if (obj instanceof THREE.Object3D){
-					
-						
-						let objCube = obj.children[0].children[0];
-						
-						let val = 0.5 + frequencyData[frequencyPointer]/150;
+	//place the shapes of both the inner and outer spheres
+	for (let a = 2; a < scene.children.length; a++){
+		let obj = scene.children[a];
+		
+		//inner sphere shapes
+		if (a < 802){
+			if (obj instanceof THREE.Object3D){		
+					let objCube = obj.children[0].children[0];
+					let val = 0.5 + frequencyData[frequencyPointer]/150;
 
-						objCube.scale.set(val/3, val/3, val/3);
-						obj.scale.set(val, val, val);
-						
-				}
+					objCube.scale.set(val/3, val/3, val/3);
+					obj.scale.set(val, val, val);	
+			}
+		//outer sphere shapes		
+		}else{
+			if (frequencyData[frequencyPointer] > 100){
+				obj.visible = true;
 			}else{
-				
-				
-				if (frequencyData[frequencyPointer] > 100){
-					obj.visible = true;
-				}else{
-					obj.visible = false;
-				}
-				
-				/*
-				let objCube = obj.children[0].children[0];
-						
-				let val = 0.5 + frequencyData[frequencyPointer]/10;
-				objCube.scale.set(val, val, val);
-				*/
+				obj.visible = false;
 			}
-			
-			frequencyPointer++;
-			if (frequencyPointer == 1024) frequencyPointer = 0;
-			
-			if (rotation){
-				camera.position.x = radius * Math.cos( angle );  
-				camera.position.z = radius * Math.sin( angle );
-				angle += 0.0000005;
-			}
-			
-			
 		}
 		
-		if (angle > 1000000) angle = 0;
+		frequencyPointer++;
+		if (frequencyPointer == 1024) frequencyPointer = 0;
+		
+		if (rotation){
+			camera.position.x = radius * Math.cos( angle );  
+			camera.position.z = radius * Math.sin( angle );
+			angle += 0.0000005;
+		}
+	}
 	
-		// Render the scene
-		renderer.render(scene, camera);
-	  
-	};
-	render();
-	
-	
+	if (angle > 1000000) angle = 0;
+	// Render the scene
+	renderer.render(scene, camera);
 }

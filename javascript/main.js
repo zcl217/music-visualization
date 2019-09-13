@@ -6,6 +6,8 @@ let bottomColor = "";
 
 $(document).ready(function() {
 	
+	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+	
 	let audio = $("#audio")[0];
 	
 	let ctx = new AudioContext();

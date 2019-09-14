@@ -47,7 +47,7 @@ function play(audio, analyser, ctx){
 		$("#audio").attr("src", URL.createObjectURL(files[0]));
 		
 	}else if (selectedOption){
-		$("#audio").attr("src", "audio/" +selectedOption+".mp3");
+		$("#audio").attr("src", "http://see-music.herokuapp.com/audio/" +selectedOption+".mp3");
 		
 	}else{
 		//display error
